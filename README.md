@@ -7,23 +7,23 @@ Installing Odoo 15 with one command.
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-15-docker-compose/master/run.sh | sudo bash -s odoo-one 10015 20015
+curl -s https://raw.githubusercontent.com/daolvcntt/thegioichocon/master/run.sh | sudo bash -s odoo-one 10018 10022
 ```
 
-to set up first Odoo instance @ `localhost:10015` (default master password: `minhng.info`)
+to set up first Odoo instance @ `localhost:10018`
 
 and
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-15-docker-compose/master/run.sh | sudo bash -s odoo-two 11015 21015
+curl -s https://raw.githubusercontent.com/daolvcntt/thegioichocon/master/run.sh | sudo bash -s odoo-two 10018 10022
 ```
 
-to set up another Odoo instance @ `localhost:11015` (default master password: `minhng.info`)
+to set up another Odoo instance @ `localhost:10018`
 
 Some arguments:
 * First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10015**): Odoo port
-* Third argument (**20015**): live chat port
+* Second argument (**10018**): Odoo port
+* Third argument (**10022**): live chat port
 
 If `curl` is not found, install it:
 
@@ -40,11 +40,11 @@ Start the container:
 docker-compose up
 ```
 
-* Then open `localhost:10015` to access Odoo 15.0. If you want to start the server with a different port, change **10015** to another value in **docker-compose.yml**:
+* Then open `localhost:10015` to access Odoo 15.0. If you want to start the server with a different port, change **10018** to another value in **docker-compose.yml**:
 
 ```
 ports:
- - "10015:8069"
+ - "10018:8069"
 ```
 
 Run Odoo container in detached mode (be able to close terminal without stopping Odoo):
@@ -56,7 +56,7 @@ docker-compose up -d
 **If you get the permission issue**, change the folder permission to make sure that the container is able to access the directory:
 
 ``` sh
-$ git clone https://github.com/minhng92/odoo-15-docker-compose
+$ git clone https://github.com/daolvcntt/thegioichocon
 $ sudo chmod -R 777 addons
 $ sudo chmod -R 777 etc
 $ mkdir -p postgresql
@@ -111,7 +111,7 @@ Configuring **nginx** to activate live chat feature (in production):
 server {
     #...
     location /longpolling/ {
-        proxy_pass http://0.0.0.0:20015/longpolling/;
+        proxy_pass http://0.0.0.0:10022/longpolling/;
     }
     #...
 }
